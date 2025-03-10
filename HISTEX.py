@@ -66,10 +66,8 @@ def get_data(prefix, enhance=False):
     cnts = cnts.iloc[:, cnts.var().to_numpy().argsort()[::-1]]
     cnts = cnts[gene_names]
 
-    embs = load_pickle(f'{prefix}embeddings-hist.pickle')
-    embs = np.concatenate([embs['his'], embs['rgb'], embs['pos']]).transpose(1, 2, 0)
-    #embs = np.concatenate([embs['sub'], embs['rgb'], embs['loc']]).transpose(1, 2, 0)
-    #embs = np.concatenate([embs['his']]).transpose(1, 2, 0)
+    embs = load_pickle(f'{prefix}Histology_feature_map.pickle')
+    embs = np.concatenate([embs['his']]).transpose(1, 2, 0)
 
     locs, enhance_locs = get_locs(prefix, target_shape=embs.shape[:2], enhance=enhance)
     return embs, cnts, enhance_cnts, locs, enhance_locs
